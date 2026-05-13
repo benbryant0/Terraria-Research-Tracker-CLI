@@ -8,7 +8,8 @@ that works for Terraria 1.4.5.x and will hopefully work for future game versions
 
 1. Compile the tool from source code or download a pre-built binary from itch.io
 2. Extract the ZIP (if downloaded) or copy the files from `bin` directory (if compiled) to the Terraria folder so that `TerrariaResearchTracker.exe` sits next to `Terraria.exe`
-3. Run the executable 
+3. Good to use!
+4. Resulting files go in Terraria's folder in My Documents.
 
 ## How to compile this
 You'll want to set a `TERRARIA_PATH` environment variable to point at where the game folder resides (where `Terraria.exe` is, no trailing backslash).
