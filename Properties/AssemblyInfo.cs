@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TerrariaResearchTracker")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Terraria Research Tracker")]
+[assembly: AssemblyDescription("Shows your Terraria Journey Mode research progress!")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TerrariaResearchTracker")]
-[assembly: AssemblyCopyright("Copyright ©  2026")]
+[assembly: AssemblyCompany("YellowAfterlife")]
+[assembly: AssemblyProduct("Terraria Research Tracker")]
+[assembly: AssemblyCopyright("Copyright © YellowAfterlife, 2026-")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,4 +1,6 @@
 # Terraria Research Tracker (CLI edition)
+**Quick links:** [itch.io](https://yellowafterlife.itch.io/terraria-research-tracker) (pre-built binaries)
+
 This is a simpler re-creation of [my older web-based tool](https://yal.cc/game-tools/terraria-research/)
 that works for Terraria 1.4.5.x and will hopefully work for future game versions with few to no changes.
 
@@ -35,7 +37,7 @@ So anyway, this quick rewrite aims to address a few of these problems:
 3. It is open-source so someone might be able to fix it up if I don't have time to.
 4. Small tweaks like excluding unobtainable items can be done in a `.cfg` file without touching the source code.
 
-## Known caveats
+## Mini-FAQ
 
 ### Mac & Linux
 You can run the program with the Windows version of Terraria through WINE or Proton.
@@ -52,7 +54,10 @@ Until then... could ask someone to run the tool for you on PC?
 
 I don't think anyone has ever mentioned anything to me
 in regards of using the original web-based tool on mobile
-so I cannot tell whether this is an actual point of concern.
+so I cannot tell whether this is a real point of concern.
+
+### Trust
+This is a C# + .NET application so you can decompile it with ILSpy/etc.
 
 ## Credits
 A tool by YellowAfterlife.
