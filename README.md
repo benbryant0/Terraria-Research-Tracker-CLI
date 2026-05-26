@@ -8,8 +8,9 @@ that works for Terraria 1.4.5.x and will hopefully work for future game versions
 
 1. Compile the tool from source code or download a pre-built binary from itch.io
 2. Extract the ZIP (if downloaded) or copy the files from `bin` directory (if compiled) to the Terraria folder so that `TerrariaResearchTracker.exe` sits next to `Terraria.exe`
-3. Good to use!
-4. Resulting files go in Terraria's folder in My Documents.
+3. The tool is now good to use!
+
+Whenever [re-]reading player progress, the files are saved to a folder inside Terraria's folder in My Documents. The location is also displayed when doing so.
 
 ## How to compile this
 You'll want to set a `TERRARIA_PATH` environment variable to point at where the game folder resides (where `Terraria.exe` is, no trailing backslash).
@@ -58,7 +59,7 @@ in regards of using the original web-based tool on mobile
 so I cannot tell whether this is a real point of concern.
 
 ### Trust
-This is a C# + .NET application so you can decompile it with ILSpy/etc.
+This is a C# + .NET application that you can compile from source code or decompile with ILSpy/etc. to verify that it does what it does.
 
 ## Credits
 A tool by YellowAfterlife.
