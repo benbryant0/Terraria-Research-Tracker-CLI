@@ -1,21 +1,30 @@
-﻿using System;
-using System.IO;
+﻿using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.Loader;
 using TMain = Terraria.Main;
-using System.Reflection;
 
 public class Program {
-	public static string ToolPath;
 	public static string ToolDir;
-	public static string GamePath;
 	public static string GameDir;
 
 	static void Main(string[] args) {
-		const string title = "Research Tracker";
+		AssemblyLoadContext.Default.Resolving += ResolveFromGac;
+
+		// The tool is supposed to be placed next to the game executables, so this is fine for now
+		ToolDir = AppContext.BaseDirectory;
+		GameDir = AppContext.BaseDirectory;
+
+		// Explicitly load since modern .NET is more conservative in how it probes for assemblies
+		Assembly.LoadFrom("TerrariaServer.exe");
+
+		Start();
+	}
+
+	// Kept out of Main so that the JIT doesn't try to load Terraria before GAC resolving is set up
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static void Start() {
+        const string title = "Research Tracker";
 		Console.Title = title;
-		ToolPath = typeof(Program).Assembly.Location;
-		ToolDir = Path.GetDirectoryName(ToolPath);
-		GamePath = typeof(TMain).Assembly.Location;
-		GameDir = Path.GetDirectoryName(GamePath);
 
 		// run the game (server)!
 		var entryPoint = typeof(Terraria.WindowsLaunch).GetMethod("Main", BindingFlags.NonPublic | BindingFlags.Static);
@@ -35,4 +44,28 @@ public class Program {
 		// don't try to initialize before the included ReLogic.dll gets loaded into memory
 		TerrariaResearchTracker.Loop();
 	}
+
+    private const string gacRoot = @"C:\Windows\Microsoft.NET\assembly";
+    private static readonly string[] GacSubDirs = ["GAC_MSIL", "GAC_32", "GAC_64"];
+    private static Assembly ResolveFromGac(AssemblyLoadContext context, AssemblyName name) {
+		if (name.Name is null || name.Version is null) {
+			return null;
+		}
+
+        var token = name.GetPublicKeyToken();
+        var tokenStr = token is { Length: > 0 }
+            ? Convert.ToHexString(token).ToLowerInvariant()
+            : "";
+
+        foreach (var subdir in GacSubDirs) {
+            var versionDir = $"v4.0_{name.Version}{(tokenStr.Length > 0 ? $"__{tokenStr}" : "")}";
+            var path = Path.Combine(gacRoot, subdir, name.Name, versionDir, $"{name.Name}.dll");
+
+			if (File.Exists(path)) {
+				return context.LoadFromAssemblyPath(path);
+			}
+        }
+
+        return null;
+    }
 }
